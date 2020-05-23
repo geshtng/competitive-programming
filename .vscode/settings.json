@@ -1,7 +1,9 @@
 {
     "files.associations": {
         "iostream": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "iosfwd": "cpp"
     },
-    "C_Cpp.errorSquiggles": "Disabled"
+    "C_Cpp.errorSquiggles": "Disabled",
+    "competitive-programming-helper.firstTime": false
 }
