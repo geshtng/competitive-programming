@@ -2,7 +2,14 @@
     "files.associations": {
         "iostream": "cpp",
         "cmath": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "ostream": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "vector": "cpp",
+        "cstdlib": "cpp",
+        "algorithm": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled",
     "competitive-programming-helper.firstTime": false

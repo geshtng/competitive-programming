@@ -1,27 +1,33 @@
-// This code still get Wrong Answer
-
 #include<bits/stdc++.h>
 using namespace std;
+
 typedef long long ll;
 
 int main () {
-    ll t;
-    ll a, b, ans, mods;
-    ll tc = 1;
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+    int t;
+    ll x, y, ansA, ansB, tm;
+    int tc = 0;
 
     cin >> t;
     while (t--) {
-        cin >> a >> b;
-        cout << "Case #" << tc << ": ";
-
-        ans = (5*a) + (7*b);
-
-        if (ans%12 != 0)
-            cout << "impossible" << endl;
-        else
-            cout << ans/12 << endl;
+        cin >> x >> y;
 
         tc++;
+        cout << "Case #" << tc << ": ";
+
+        tm = (y - x) / 12;
+        ansA = tm * 7 + x;
+        ansB = y - (tm * 5);
+
+        if (x == y)
+            cout << x << endl;
+        else if (ansA != ansB || x > y)
+            cout << "impossible" << endl;
+        else
+            cout << ansA << endl;
     }
 
     return 0;
