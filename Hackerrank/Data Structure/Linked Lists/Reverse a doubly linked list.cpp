@@ -84,28 +84,26 @@ void free_doubly_linked_list(DoublyLinkedListNode* node) {
  */
 
 DoublyLinkedListNode* reverse(DoublyLinkedListNode* llist) {
-    DoublyLinkedListNode* head = llist;
-
-    while (head != NULL) {
-        head = head->next;
-    }
-
-    DoublyLinkedListNode* res = new DoublyLinkedListNode(llist->data);
-    DoublyLinkedListNode* current = res;
-    
-    res->prev = NULL;
-    llist = llist->prev;
+    vector <int> vec;
 
     while (llist != NULL) {
-        DoublyLinkedListNode* temp = current;
-        current->next = new DoublyLinkedListNode(llist->data);
-        
-        current = current->next;
-        current->prev = temp;
-        llist = llist->prev;
+        vec.push_back(llist->data);
+        llist = llist->next;
     }
 
-    return res;
+    DoublyLinkedListNode* head = new DoublyLinkedListNode(vec[vec.size() - 1]);
+    DoublyLinkedListNode* current = head;
+    head->prev = NULL;
+
+    for (int i = vec.size() - 2; i >= 0; i--) {
+        DoublyLinkedListNode* temp = current;
+        current->next = new DoublyLinkedListNode(vec[i]);
+
+        current = current->next;
+        current->prev = temp;
+    }
+ 
+    return head;
 }
 
 int main()
