@@ -22,10 +22,9 @@ int main (){
         cin >> cari;
 
         vector <string>::iterator pos = lower_bound(name.begin(), name.end(), cari);
-        if (*pos == cari)
-            cout << number[pos-name.begin()] << endl;
-        else
-            cout << "NIHIL" << endl;
+
+        if (*pos == cari) cout << number[pos - name.begin()] << endl;
+        else cout << "NIHIL\n";
     }
 
     return 0;
