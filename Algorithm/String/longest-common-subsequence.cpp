@@ -4,7 +4,7 @@ using namespace std;
 int longest_common_subsequence(string str1, string str2) {
     int m = str1.size();
     int n = str2.size();
-    int dp[m + 1][n + 1] = {0};
+    int dp[m + 1][n + 1];
 
     dp[0][0] = 0;
 
