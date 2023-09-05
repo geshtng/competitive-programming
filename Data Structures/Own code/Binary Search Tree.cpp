@@ -30,6 +30,27 @@ void print_inorder(struct Node* root) {
     }
 }
 
+void print_inorder_iterative(struct Node* root) {
+    if (root == NULL) return;
+
+    stack <struct Node*> nodeStack;
+    struct Node* node = root;
+
+    while (node != NULL || !nodeStack.empty()) {
+        if (node != NULL) {
+            nodeStack.push(node);
+            node = node->left;
+        } else {
+            node = nodeStack.top();
+            nodeStack.pop();
+
+            cout << node->data << " ";
+            node = node->right;
+        }
+    }
+
+}
+
 // Preorder Traversal
 void print_preorder(struct Node* root) {
     if (root != NULL) {
@@ -39,12 +60,54 @@ void print_preorder(struct Node* root) {
     }
 }
 
+void print_preorder_iterative(struct Node* root) {
+    if (root == NULL) return;
+
+    stack <struct Node*> nodeStack;
+    nodeStack.push(root);
+
+    while(!nodeStack.empty()) {
+        struct Node* node = nodeStack.top();
+
+        cout << node->data << " ";
+        nodeStack.pop();
+
+        if (node->right) nodeStack.push(node->right);
+        if (node->left) nodeStack.push(node->left);
+    }
+}
+
 // Postorder Traversal
 void print_postorder(struct Node* root) {
     if (root != NULL) {
         print_postorder(root->left);
         print_postorder(root->right);
         cout << root->data << " ";
+    }
+}
+
+void print_postorder_iterative(struct Node* root) {
+    if (root == NULL) return;
+
+    stack <struct Node*> nodeStack;
+    nodeStack.push(root);
+
+    stack <int> data;
+
+    while (!nodeStack.empty()) {
+        struct Node* node = nodeStack.top();
+        nodeStack.pop();
+
+        data.push(node->data);
+
+        if (node->left) nodeStack.push(node->left);
+
+        if (node->right) nodeStack.push(node->right);
+    }
+
+    while (!data.empty()) {
+        cout << data.top() << " ";
+        data.pop();
     }
 }
 
@@ -65,6 +128,21 @@ struct Node* insert(struct Node* node, int new_data) {
 int main() {
     struct Node* root = NULL;
 
+    /* Tree visualization 
+        
+                8
+              /   \
+             /     \
+           3       10
+          / \        \
+         /   \        \
+        1      6       14
+              / \
+             /   \
+            4     7
+
+    */
+
     root = insert(root, 8);
     root = insert(root, 3);
     root = insert(root, 1);
@@ -74,17 +152,31 @@ int main() {
     root = insert(root, 14);
     root = insert(root, 4);
 
-    cout << "Inorder: ";
+    cout << "Recursive:\n";
+    cout << "Inorder\t\t: ";
     print_inorder(root);
     cout << "\n";
 
-    cout << "Preorder: ";
+    cout << "Preorder\t: ";
     print_preorder(root);
     cout << "\n";
 
-    cout << "Postorder: ";
+    cout << "Postorder\t: ";
     print_postorder(root);
-    cout << "\n";
+    cout << "\n\n";
+
+    cout << "Iterative:\n";
+    cout << "Inorder iterative\t: ";
+    print_inorder_iterative(root);
+    cout << endl;
+
+    cout << "Preorder iterative\t: ";
+    print_preorder_iterative(root);
+    cout << endl;
+
+    cout << "Postorder iterative\t: ";
+    print_postorder_iterative(root);
+    cout << endl;
 
     return 0;
 }
